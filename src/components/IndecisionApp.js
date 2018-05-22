@@ -6,11 +6,11 @@ import Action from './Action';
 import OptionModal from './OptionModal';
 
 class IndecisionApp extends React.Component{
+    //set the initial state
     state = {
         options: [],
         selectedOption: undefined
     }
-
     handleClearSelectedOption = () => {
         this.setState(()=> ({selectedOption: undefined}))
     }
@@ -19,30 +19,32 @@ class IndecisionApp extends React.Component{
         this.setState(()=> ({ options: [] }));
     }
     handleDeleteOption = (optionToRemove) => {
+        //filter out the selected option and delete it from the array
         this.setState((prevState)=> ({
             options: prevState.options.filter((option) => optionToRemove !== option)
-
-
         }))
     }
+
     handlePick = () =>{
+        //randomly pick one of the options in the array
         const randomNum = Math.floor(Math.random() * this.state.options.length);
         const option = this.state.options[randomNum];
 
         this.setState(()=>({selectedOption: option}));
     }
     handleAddOption = (option) =>{
-
         if (!option) {
             return "Please enter an option";
         }else if(this.state.options.indexOf(option) > -1){
             return "This option already exists";
         }
+        //Add the new option to the end of the options array
         this.setState((prevState)=>({
             options: prevState.options.concat(option)
         }));
     }
     componentDidMount(){
+        //check the localStorage if there is anything saved and then set the state
         try {
             const json = localStorage.getItem("options");
             const options = JSON.parse(json);
@@ -54,20 +56,18 @@ class IndecisionApp extends React.Component{
         }
     }
     componentDidUpdate(prevProps, prevState){
+        // Pass the update to local storage for creating and deleting
         if (prevState.options.length !== this.state.options.length) {
             const json = JSON.stringify(this.state.options);
             localStorage.setItem("options", json);
             console.log("saving data");
         }
-
-    }
-    componentWillUnmount(){
-        console.log("Component Will Unmount");
     }
     render(){
-        const subtitle = "Put your life in the hands of a computer";
+        const subtitle = "With Responsivity and Randomization!";
 
         return (
+            //Pass props to children
             <div>
                 <Header  subtitle={subtitle}/>
                 <div className="container">

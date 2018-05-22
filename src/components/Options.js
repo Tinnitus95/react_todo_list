@@ -11,8 +11,10 @@ const Options = (props) =>(
                  Remove All
              </button>
              </div>
+             {/* condtionally render message using "logical && operator" */}
              {props.options.length === 0 && <p className="widget__message">Please add an option to get started!</p>}
              {
+                 //create a new option for each option in the optionsarray
                  props.options.map((option, index) => (
                 <Option
                     key = {option}
@@ -22,10 +24,7 @@ const Options = (props) =>(
                 />
             ))
         }
-
-
     </div>
-
 );
 
 

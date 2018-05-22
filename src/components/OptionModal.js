@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-
+//create a Modal using the react-modal library
 const OptionModal = (props) => (
      <Modal
          isOpen={!!props.selectedOption}

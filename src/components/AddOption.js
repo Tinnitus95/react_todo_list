@@ -6,6 +6,7 @@ export default class AddOption extends React.Component {
     };
     handleAddOption = (e) => {
         e.preventDefault();
+        // remove all whitespaces at the start and end of the options
         const option = e.target.elements.option.value.trim();
         const error = this.props.handleAddOption(option);
 
@@ -18,9 +19,10 @@ export default class AddOption extends React.Component {
     render(){
         return (
             <div>
+                {/* print out an error message when trying to add an existing option */}
                 {this.state.error && <p className="add-option-error">{this.state.error}</p>}
                 <form className="add-option" onSubmit={this.handleAddOption}>
-                    <input className="add-option__input" type="text" name="option"/>
+                    <input type="text" name="option"/>
                     <button className="button">Add Option</button>
                 </form>
             </div>
