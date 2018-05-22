@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import IndecisionApp from './components/IndecisionApp';
+import App from './components/App';
 import 'normalize.css/normalize.css'
-import './styles/styles.scss';
+import './styles/styles.css';
 
 
 const Layout = (props) => {
@@ -15,4 +15,4 @@ const Layout = (props) => {
     );
 }
 
-ReactDOM.render(<IndecisionApp/>, document.getElementById('app'))
+ReactDOM.render(<App/>, document.getElementById('app'))
